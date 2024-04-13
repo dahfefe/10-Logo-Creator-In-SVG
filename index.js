@@ -1,117 +1,50 @@
 
-// TODO: Create a function to initialize app
-// function init() {}
-
-// Function call to initialize app
-// init();
-
 // Calling required file system and NPM package (Inquirer)
 const inquirer = require('inquirer');
 const fs = require('fs');
 
 // function that creates markdown text with literals to input user responses from command-line prompts
-const generateReadme = 
-({ title, 
-  description, 
-  motivation, 
-  problemSolved, 
-  learned, 
-  installation, 
-  usage, 
-  credits1, 
-  credits2, 
-  credits3, 
-  license, 
-  features, 
-  contributing1, 
-  contributing2, 
-  tests, 
-  username,
-  email }) =>
+const generateLogo = 
+({ text, 
+  textColor, 
+  shape, 
+  shapeColor }) =>
   
 `
-  # ${title} ${renderLicenseBadge(license)}
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Square with Text</title>
+      <style>
+          body {
+              margin: 0;
+              padding: 0;
+          }
+          .container {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 300px;
+              height: 200px;
+              background-color: orange;
+          }
+          .text {
+              color: red;
+              font-size: 100px;
+              text-align: center;
+          }
+      </style>
+  </head>
+  <body>
+      <div class="container">
+          <p class="text">AAA</p>
+      </div>
+  </body>
+  </html>
   
-  ## Description
-  
-  ${description}
-
-  ## Motivation
-  
-  ${motivation}
-
-  ## Problem Solved
-  
-  ${problemSolved}
-
-  ## What I Learned
-  
-  ${learned}
-
-  ## Table of Contents
-
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [Credits](#credits)
-  - [License](#license)
-  - [Badges](#badges)
-  - [Features](#features)
-  - [How to Contribute](#contributing)
-  - [Tests](#tests)
-  - [Any Questions?](#questions)
-
-  ## Installation 
-  
-  ${installation}
-
-  ## Usage
-  
-  ${usage}
-
-  ## Credits
-  
-  Collaborators: 
-  ${credits1}
-
-  Third-party Assets: 
-  ${credits2}
-
-  Tutorials Used: 
-  ${credits3}
-
-  ## License
-  
-  This project is licensed under the ${license}. You can find the license details in the LICENSE file included in this repository.
-
-  License Link: ${renderLicenseLink(license)}
-
-  ## Badges
-
-  ${renderLicenseBadge(license)}
-
-  ## Features
-  
-  ${features}
-
-  ## Contributing
-  
-  There are many ways in which you can participate in this project, for example:
-
-  * [Submit bugs and feature requests]( ${contributing1}), and help us verify as they are checked in
-  * Review [source code changes]( ${contributing2})
-  * Review the [documentation](https://github.com/microsoft/vscode-docs) and make pull requests for anything from typos to additional and new content
-
-  ## Tests
-  
-  ${tests}
-
-  ## Questions
-  
-  Link to My GitHub: https://github.com/${username}
-
-  If you should have any questions, you can contact me at the following email address: ${email}
-
-  `
+`
 ;
 
 // inquirer prompts needed for obtaining user response per section of README.md file
@@ -119,100 +52,35 @@ inquirer
   .prompt([
     {
       type: 'input',
-      name: 'title',
-      message: 'What is the title?',
+      name: 'text',
+      message: 'What is the text for your logo? (Please only enter 1-3 characters)',
     },
     {
       type: 'input',
-      name: 'description',
-      message: 'Please provide a description of your README. What is it and what is the purpose?',
-    },
-    {
-      type: 'input',
-      name: 'motivation',
-      message: 'What was your motivation for completing/contributing to this task?',
-    },
-    {
-      type: 'input',
-      name: 'problemSolved',
-      message: 'What problem(s) were solved with this project/task?',
-    },
-    {
-      type: 'input',
-      name: 'learned',
-      message: 'What did you learn from this project/task?',
-    },
-    {
-      type: 'input',
-      name: 'installation',
-      message: 'What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.',
-    },
-    {
-      type: 'input',
-      name: 'usage',
-      message: 'Provide instructions and examples for use.',
-    },
-    {
-      type: 'input',
-      name: 'credits1',
-      message: 'List your collaborators, if any, with links to their GitHub profiles. (only one comprehensive entry allowed here!)',
-    },
-    {
-      type: 'input',
-      name: 'credits2',
-      message: 'If you used any third-party assets that require attribution, list the creators with links to their primary web presence. (only one comprehensive entry allowed here!)',
-    },
-    {
-      type: 'input',
-      name: 'credits3',
-      message: 'If you followed tutorials, include links to those here as well. (only one comprehensive entry allowed here!)',
+      name: 'textColor',
+      message: 'What is the color of the text? (You may enter color keyword or hexadecimal number)',
     },
     {
       type: 'list',
-      name: 'license',
-      message: 'What license is applied to your project/task?',
-      choices: ['Apache License 2.0', 'GNU General Public License v3.0', 'MIT License', 'Mozilla Public License 2.0'],
+      name: 'shape',
+      message: 'Select the shape of your logo.',
+      choices: ['circle', 'triangle', 'square'],
     },
     {
       type: 'input',
-      name: 'features',
-      message: 'If your project has a lot of features, list them here. (only one comprehensive entry allowed here!)',
-    },
-    {
-      type: 'input',
-      name: 'contributing1',
-      message: 'To allow users to submit bug and feature requests for contribution, please provide the link to the "Issues" section of your GitHub repository.',
-    },
-    {
-      type: 'input',
-      name: 'contributing2',
-      message: 'To allow users to review source code changes, please provide the link to the "Pull Request" section of your GitHub repository.',
-    },
-    {
-      type: 'input',
-      name: 'tests',
-      message: 'Go the extra mile and write tests for your application. Then provide examples on how to run them here.',
-    },
-    {
-      type: 'input',
-      name: 'username',
-      message: 'Provide your GitHub username to add a link to your GitHub profile to the README.',
-    },
-    {
-      type: 'input',
-      name: 'email',
-      message: 'If anyone should have any questions, what is the email address that they may contact you?',
+      name: 'shapeColor',
+      message: 'What is the color of the shape for your logo? (You may enter color keyword or hexadecimal number)',
     },
 
   ])
 
   // .then function asynchronously collects responses from user input
   .then((responses) => {
-    const readMeContent = generateReadme(responses);
+    const logoInputs = generateLogo(responses);
 
     // writeFile function generates README file from user responses and error logging to aid in troubleshooting
     fs.writeFile('README_auto.md', readMeContent, (err) =>
-      err ? console.log(err) : console.log('Successfully created README.md!')
+      err ? console.log(err) : console.log("Generated logo.svg")
     );
   });
 
