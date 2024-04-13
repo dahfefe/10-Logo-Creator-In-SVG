@@ -11,38 +11,13 @@ const generateLogo =
   shapeColor }) =>
   
 `
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Square with Text</title>
-      <style>
-          body {
-              margin: 0;
-              padding: 0;
-          }
-          .container {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              width: 300px;
-              height: 200px;
-              background-color: orange;
-          }
-          .text {
-              color: red;
-              font-size: 100px;
-              text-align: center;
-          }
-      </style>
-  </head>
-  <body>
-      <div class="container">
-          <p class="text">AAA</p>
-      </div>
-  </body>
-  </html>
+<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+
+  <circle cx="150" cy="100" r="80" fill="green" />
+
+  <text x="150" y="125" font-size="60" text-anchor="middle" fill="white">SVG</text>
+
+</svg>
   
 `
 ;
