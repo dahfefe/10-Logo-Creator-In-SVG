@@ -3,7 +3,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-// const LogoInputs = require('./lib/LogoInputs');
+const LogoInputs = require('./lib/LogoInputs');
 const Circle = require('./lib/Circle');
 const Triangle = require('./lib/Triangle');
 const Square = require('./lib/Square');
