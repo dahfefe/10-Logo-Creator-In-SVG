@@ -9,23 +9,24 @@ const Triangle = require('./lib/Triangle');
 const Square = require('./lib/Square');
 
 // function that creates markdown text with literals to input user responses from command-line prompts
-const generateLogo = 
-({ text, 
-  textColor, 
-  shape, 
-  shapeColor }) => 
+// Note: const generateLogo not needed for this assignment but may be useful code for future development
+// const generateLogo = 
+// ({ text, 
+//   textColor, 
+//   shape, 
+//   shapeColor }) => 
   
-`
-<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+// `
+// <svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
 
-  ${renderLogoShape(shape)} fill="${shapeColor}" />
+//   ${renderLogoShape(shape)} fill="${shapeColor}" />
 
-  <text x="150" y="125" font-size="60" text-anchor="middle" fill="${textColor}">${text}</text>
+//   <text x="150" y="125" font-size="60" text-anchor="middle" fill="${textColor}">${text}</text>
 
-</svg>
+// </svg>
   
-`
-;
+// `
+// ;
 
 // inquirer prompts needed for obtaining user response 
 inquirer
@@ -57,6 +58,15 @@ inquirer
   // .then function asynchronously collects responses from user input
   .then((responses) => {
 
+    let textNumber = responses.text
+    if (textNumber.length === 0) {
+      throw new Error('Text logo must be 1-3 characters in length.');
+    }
+    
+    if (textNumber.length > 3) {
+      throw new Error('Text logo must be 1-3 characters in length.');
+    }
+
     // conditional that renders the appropriate svg code based on user's selected shape choice
     let newLogo;
     if (responses.shape === "circle") {
@@ -70,7 +80,7 @@ inquirer
     // console.log(newLogo.render());  // console.logs new SVG from render function of corresponding shape class
     const newGeneratedLogo = newLogo.render();
 
-    const logoInputs = generateLogo(responses);
+    // const logoInputs = generateLogo(responses);
     // console.log(logoInputs);
 
     // writeFile function generates README file from user responses and error logging to aid in troubleshooting
@@ -80,20 +90,21 @@ inquirer
 
   });
 
+// Note: this function not needed for this assignment but may be useful code for future development
 // function to render correspoding shape chosen by user
-function renderLogoShape(shape) {
-  const userChosenShape = {
-    "circle": `<circle cx="150" cy="100" r="80"`,
-    "triangle": `<polygon points="100,70 50,180 150,180"`,
-    "square": `<rect width="100" height="100"`,
-  };
+// function renderLogoShape(shape) {
+//   const userChosenShape = {
+//     "circle": `<circle cx="150" cy="100" r="80"`,
+//     "triangle": `<polygon points="100,70 50,180 150,180"`,
+//     "square": `<rect width="100" height="100"`,
+//   };
 
-  if (userChosenShape[shape]) {
-    return userChosenShape[shape];
-  } else {
-    return ``;
-  }
-}
+//   if (userChosenShape[shape]) {
+//     return userChosenShape[shape];
+//   } else {
+//     return ``;
+//   }
+// }
   
 
   
