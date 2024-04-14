@@ -67,6 +67,22 @@ inquirer
       throw new Error('Text logo must be 1-3 characters in length.');
     }
 
+    const color1 = responses.textColor
+    const color2 = responses.shapeColor
+    function validateColor(color1, color2) {
+      const validColorName = /\b(aqua|black|blue|fuchsia|gray|green|lime|maroon|navy|olive|purple|red|silver|teal|white|yellow|orange)\b/i;
+      const validHexColor = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i;
+    
+      if (!validColorName.test(color1, color2) && !validHexColor.test(color1, color2)) {
+        throw new Error("Invalid color format. Please use a valid color name or hex code.");
+      }
+    
+      // If no error is thrown, color is valid
+      return true;
+    }
+
+    validateColor(color1, color2);
+
     // conditional that renders the appropriate svg code based on user's selected shape choice
     let newLogo;
     if (responses.shape === "circle") {
