@@ -57,6 +57,7 @@ inquirer
   // .then function asynchronously collects responses from user input
   .then((responses) => {
 
+    // conditional that renders the appropriate svg code based on user's selected shape choice
     let newLogo;
     if (responses.shape === "circle") {
       newLogo = new Circle(responses)
@@ -78,8 +79,6 @@ inquirer
     );
 
   });
-
-  // const chosenShape = shape.render();
 
 // function to render correspoding shape chosen by user
 function renderLogoShape(shape) {
