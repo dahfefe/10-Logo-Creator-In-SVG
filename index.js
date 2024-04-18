@@ -3,7 +3,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-const LogoInputs = require('./lib/LogoInputs');
+// const LogoInputs = require('./lib/LogoInputs');
 const Circle = require('./lib/Circle');
 const Triangle = require('./lib/Triangle');
 const Square = require('./lib/Square');
@@ -92,8 +92,8 @@ inquirer
     } else if (responses.shape === "square") {
       newLogo = new Square(responses)
     }
-    // console.log(newLogo);   // console.logs new object based on the selected shape
-    // console.log(newLogo.render());  // console.logs new SVG from render function of corresponding shape class
+    console.log(newLogo);   // console.logs new object based on the selected shape
+    console.log(newLogo.render());  // console.logs new SVG from render function of corresponding shape class
     const newGeneratedLogo = newLogo.render();
 
     // const logoInputs = generateLogo(responses);
