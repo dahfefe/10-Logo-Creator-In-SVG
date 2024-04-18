@@ -60,7 +60,7 @@ The main case use for this project include the following:
 
 ## Screenshot & Video Tutorial of Application
 
-Video Tutorial: https://watch.screencastify.com/v/adsuAFAfi15uxnn02omE
+Video Tutorial: https://watch.screencastify.com/v/9XSqSDsG5ao1bxpSLzQ1 
 
 When initially starting the application, open the terminal and run "node index.js":
 
